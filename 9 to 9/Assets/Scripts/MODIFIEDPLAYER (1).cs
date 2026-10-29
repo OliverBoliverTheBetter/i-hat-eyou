@@ -27,7 +27,6 @@ public class Player : MonoBehaviour
     private bool canJump = false;
     private int pastx = 1;
     private int unistate = 0;
-
     AudioSource audioData;
     
   /*//Starts before the first frame. Gets the RigidBody2D, SpriteRenderer, PlayerController 
@@ -41,13 +40,12 @@ public class Player : MonoBehaviour
         audioData = GetComponent<AudioSource>();
         
     }
-
     void Update()
     {
         var absVelX = Mathf.Abs(body2D.linearVelocity.x); //Creates a variable to store horizontal movement velocity (x)
         var absVelY = Mathf.Abs(body2D.linearVelocity.y); //Creates a variable to store vertical movement velocity (y)
         var forceY = 0f; //Creates a variable to store force
-          
+        
         // Access the player's Y-axis position
         float playerYPosition = transform.position.y;
         if (playerYPosition < -150)  //Check if the player has fallen below a certain position on the screen and return to the Splash Screen if true
@@ -55,6 +53,12 @@ public class Player : MonoBehaviour
             SceneManager.LoadScene("SplashScreen");
         }
     
+        if (controller.JumpReleased == 1)
+        {
+            body2D.linearVelocity = new Vector3(body2D.linearVelocity.x, 0); //thank you random guy from unity docs from 2017 for this line of code
+            forceY = (jetSpeed*0)-60;     
+            controller.JumpReleased = 0;              
+        }    
         if (absVelY <= standingThreshold) //Check if the player is standing on the ground or not
         {
             
@@ -68,15 +72,6 @@ public class Player : MonoBehaviour
                 forceY = jetSpeed * controller.moving.y;
                 controller.JumpReleased = 0;
             }
-
-            if (controller.JumpReleased == 1)
-            {
-                forceY = jetSpeed /5;
-                controller.JumpReleased = 0;                    
-            }
-
-
-            
         }
         else
         {
@@ -102,12 +97,10 @@ public class Player : MonoBehaviour
                 pastx = -1;
             }
         }
-      
-
         body2D.AddForce(new Vector2(forceX, forceY)); //Apply the calculated forces to the player's Rigidbody2D
         if (canJump == false)
         {
-           if (controller.moving.y > 0 && isJumping == true) //If going up or jumping up
+           if (controller.bigjump == true && isJumping == true) //If going up or jumping up
             {
                 if (pastx == 1)
                 {
@@ -128,6 +121,7 @@ public class Player : MonoBehaviour
                 {
                     unistate = 7;
                 }
+                
             } 
         }
         else
@@ -167,6 +161,7 @@ public class Player : MonoBehaviour
             isJumping = false;
             canJump = true;
             controller.JumpReleased = 0;
+            controller.bigjump = false;
             
         }
     }

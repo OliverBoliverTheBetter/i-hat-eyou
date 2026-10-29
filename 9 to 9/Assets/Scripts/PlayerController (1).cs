@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     
     public Vector2 moving = new Vector2(); // Public variable to store player's movement direction
     public int JumpReleased = 0;
+    public bool bigjump = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +35,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown("up") || Input.GetKeyDown("w") || Input.GetKeyDown("space")){
             // Set the y component of the movement vector to 1 (upward direction)
             moving.y = 1;
+            bigjump = true;
         }
 
         // Check if the down arrow key or 'S' key is pressed
@@ -41,8 +43,9 @@ public class PlayerController : MonoBehaviour
             // Set the y component of the movement vector to -1 (downward direction)
             moving.y = -1;
         }
-            if (Input.GetKeyUp("up") || Input.GetKeyUp("w") || Input.GetKeyUp("space")){
-                JumpReleased = 1;
-            }
+        if (Input.GetKeyUp("up") || Input.GetKeyUp("w") || Input.GetKeyUp("space")){
+            JumpReleased = 1;
+            bigjump = false;
+        }
     }
 }

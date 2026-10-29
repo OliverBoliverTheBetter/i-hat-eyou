@@ -351,6 +351,8 @@ GameObject:
   - component: {fileID: 1894108714}
   - component: {fileID: 1894108713}
   - component: {fileID: 1894108712}
+  - component: {fileID: 1894108716}
+  - component: {fileID: 1894108715}
   m_Layer: 0
   m_Name: your-name-is-greg-now.-Grog-Nawwwwww_0
   m_TagString: Untagged
@@ -454,6 +456,40 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1894108715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1894108711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59c038ac10f087140a1d091a91c487bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  moving: {x: 0, y: 0}
+  JumpReleased: 0
+  bigjump: 0
+--- !u!114 &1894108716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1894108711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e69c9249cbed67c4fa714c23d1896a25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Player
+  speed: 150
+  maxVelocity: {x: 60, y: 100}
+  jetSpeed: 200
+  standing: 0
+  standingThreshold: 4
+  airSpeedMultiplier: 0.3
+  alive: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
